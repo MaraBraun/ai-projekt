@@ -1,0 +1,35 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{mystyle}
+
+%\loadglsentries[main]{tex/glossar}
+%\makeglossaries%Glossar
+%\makeindex
+
+\begin{document}
+\input{tex/title}
+\clearpage
+%\input{./signature.tex}
+\pagenumbering{roman}
+\include{tex/abstract}
+\tableofcontents
+\listoffigures
+%\listoftables
+\clearpage
+\pagenumbering{arabic}
+\include{tex/einleitung}
+\include{tex/theorie}
+\include{tex/gegenueber}
+\include{tex/fazit}
+\clearpage
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\section*{Literaturverzeichnis}
+%\printglossary[title=Glossar]%Glossar ausgeben
+\clearpage
+%\input{tex/anhang}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
