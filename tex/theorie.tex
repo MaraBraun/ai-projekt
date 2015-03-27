@@ -15,13 +15,13 @@ Wie der Name schon vermuten lässt, besteht die MVC Architektur aus drei Rollen,
 
 \item Die letzte Rolle ist die des Controllers. Der Controller dient dazu Benutzereingaben anzunehmen, das Model zu manipulieren und das View Objekt zu aktualisieren.
 \end{itemize}
-Die wichtigste Trennung ist die Trennung von Model und View. Der Grundgedanke hierbei ist es, dass ein Entwickler wenn er eine View (Ansicht) entwickelt über andere Dinge nachdenkt, als wenn er das Model entwickelt. Beispielsweise denkt er bei der Entwicklung der View mehr über die Mechanisemen der UI nach und bei der Entwicklung des Models mehr über die Geschäftsstrategie nach. Zudem möchte ein User eventuell ein und die selbe Information aus dem Model in einer Anwendung auf unterschiedliche Weise dargestellt haben, was sich durch die Trennung von View und Model vereinfacht, da für jede Ansicht das selbe Model verwendet werden kann und sich nur die View ändert. Ein letzter Aspekt, der für die Trennung von Model und View spricht, ist das nicht sichtbare Objekte meist besser zu testen sind als sichtbare und so durch die MVC-Architektur die Modellogik getrennt von der Benutzeroberfläche (GUI) getestet werden kann.\\
-Die Trennung von View und Controller dagegen ist weniger relevant, weshalb in einigen Frameworks heute eine Kombination von View und Controller verwendet wird. Selbst in den meisten Versionen von Smalltalk, für die die MVC-Architektur ursprünglich entwickelt wurde, wurde meiste eine Kombination von View und Controller verwandt. Die Trennung von View und Controller ist vorallem dann sinnvoll, wenn er sich um Rich-Client-Systeme handelt oder der Controller von Web-Frontends separiert wird.\\
-\begin{figure}
+Die wichtigste Trennung ist die Trennung von Model und View. Der Grundgedanke hierbei ist es, dass ein Entwickler wenn er eine View (Ansicht) entwickelt über andere Dinge nachdenkt, als wenn er das Model entwickelt. Beispielsweise denkt er bei der Entwicklung der View mehr über die Mechanisemen der UI nach und bei der Entwicklung des Models mehr über die Geschäftsstrategie nach. Zudem möchte ein User eventuell ein und die selbe Information aus dem Model in einer Anwendung auf unterschiedliche Weise dargestellt haben, was sich durch die Trennung von View und Model vereinfacht, da für jede Ansicht das selbe Model verwendet werden kann und sich nur die View ändert. Ein letzter Aspekt, der für die Trennung von Model und View spricht, ist das nicht sichtbare Objekte meist besser zu testen sind als sichtbare und so durch die MVC-Architektur die Modellogik getrennt von der Benutzeroberfläche (GUI) getestet werden kann.
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.80\textwidth]{img/MVC-Allgemein(Fowler).png}
 \caption {MVC-Architektur}
 \end{figure}
+Die Trennung von View und Controller dagegen ist weniger relevant und nicht immer sinnvoll, weshalb in einigen Frameworks heute eine Kombination von View und Controller verwendet wird. Selbst in den meisten Versionen von Smalltalk, für die die MVC-Architektur ursprünglich entwickelt wurde, wurde meiste eine Kombination von View und Controller verwandt. Die Trennung von View und Controller ist vorallem dann sinnvoll, wenn er sich um Rich-Client-Systeme handelt oder der Controller von Web-Frontends separiert wird.\\
 Wie auch in der Abbildung zu sehen, ist die Richtung der Abhängigkeiten für die MVC-Architektur entscheidend. Die Abbildung zeigt, dass sowohl View als auch Controller vom Model abhängig sind, jedoch keine Abhängigkeit des Models von View oder Controller besteht. Diese Unabhängigkeit des Models bedeutet, dass das Model auch bei Änderungen an View und Controller unverändert bleibt und damit Änderungen am View deutlich erleichtert.
 (Patterns of Enterprise Application Architecture - Martin Fowler)
 \subsection{ADF}
@@ -31,10 +31,17 @@ Dieses Kapitel soll einen Einblick in die Möglichkeiten des Frameworks ADF biet
 
 Eine Lösung zur Entwicklung von modernen Anwendungen als komponentenbasierte Benutzerschnittstelle bietet ORACLE mit dem Application Development Framework (ADF). ADF ist ein Java EE (Java Enterprise Edition) Framework, das Anwendungsentwicklung mit Java, Java EE und SOA vereinfachen soll um ein breites Publikum von Geschäftsbereich und Technologie Experten anzusprechen, die zusammen arbeiten müssen, um langlebige Enterprise Softwarelösungen entwickeln zu können.(Oracle Fusion Developer Guide Introduction Seite xxiii)
 \subsubsection{Architektur}
-\begin{figure}
+Das Application Developement Framework von Oracle basiert, wie auch einige andere Web Applicatin Frameworks heutzutage auf der im vorigen Kapitel erklärten MVC-Architektur. 
+Auch ADF hat Model, View und Controller, jedoch werden diese Schichten der Architektur noch durch die Ebenen Business Services und Data Services erweitert.
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.80\textwidth]{img/MVC-ADF.png}
+\includegraphics[width=0.80\textwidth]{img/MVC-ADF3.png}
 \caption {MVC-Architektur von ADF}
 \end{figure}
+
+Die View Ebene der ADF Architektur (siehe Abbildung) ist wie allgemein von der MVC Architektur vorgesehen die Anzeigeebene der Anwendung und unterteilt sich in die Kategorien Desktop und Browser, da mit ADF sowohl Java Swing Anwendungen (also Desktopanwendungen) als auch Web- oder auch Browser-Anwendungen erstellt werden können. Diese Unterteilung wirk sich auch auch auf die nächste Ebene der Architektur aus, denn eine Trennung von View und Controller wird für Desktopanwendungen nicht zwingend benötigt (siehe auch Kapitel MVC). Für Webanwendungen ist es jedoch sinnvoll einen Controller zu haben um Frontend und Controller getrennt zu behandeln. Der Controller von ADF Anwendungen hat die Aufgabe, Benutzer Aktionen zu interpretieren und zu entscheiden, welche Seite dem User in welcher Reihenfolge angezeigt werden.\\
+Das Model ist hier die Abstraktionsschicht. Es besteht aus dem ADF Binding Layer und den Data Conrols. Die Data Controls bilden die Schnittstelle zu den Business Services und können daher verschiedene Geschäftslogikimplementierungen zur Verfügung stellen. Der Binding Layer verwendet wiederum die jeweilige vom Data Control zur Verfügung gestellte Geschäftslogik, um mit dem Controller (wenn er vorhanden ist) interagieren zu können und entsprechende Daten im View anzuzeigen und Funktionen in der Geschäftslogik aufrufen zu können.
+Die beiden zusätzlichen Ebenen in der ADF-MVC-Architektur sind die Business Services und die Data Services. Mit Hilfe dieser Ebenen können in der Anwendung z.B. Web Services angebunden werden und es können Verbindungen zu Relationalen Datenbanken oder anderen Data Services hergestellt werden.
+(Quellen: Doag Artikel, ADF Developers Guide 11gR1,Oracle ADF Enterprise Application Development – Made Simple, ADF Buch)
 \subsection{Grails}
 Dieses Kapitel soll einen Einblick in das Framework Grails ermöglichen.
