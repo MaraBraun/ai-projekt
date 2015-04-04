@@ -48,10 +48,24 @@ Die beiden zusätzlichen Ebenen in der ADF-MVC-Architektur sind die Business Ser
 Dieses Kapitel soll einen Einblick in den Aufbau des Frameworks Grails ermöglichen und damit die unterschiedlichen Möglichkeiten zur Verwendung dieses Frameworks grundlegend erläutern.
 
 \subsubsection{Grundlegendes}
-Auch Grails ist ein Framework, mit dem Web-Anwendungen erstellt werden können. Grails wurde 2005 unter anderem im Zuge der Beliebtheit von auf dynamische Sprachen basierenden Frameworks entwickelt, die angeführt wurde von Ruby on Rails(Glossareintrag). Grails basiert auf der 2003 entstandenen Programmiersprache Groovy, die wiederum auf Java basiert. 
+Auch Grails ist ein Framework, mit dem Web-Anwendungen erstellt werden können. Grails wurde 2005 unter anderem im Zuge der Beliebtheit von auf dynamische Sprachen basierenden Frameworks entwickelt, die angeführt wurde von Ruby on Rails(Glossareintrag). Grails basiert auf der 2003 entstandenen Programmiersprache Groovy, die wiederum auf Java basiert. Das wesentliche Ziel des Framework Grails wurde wie folgt beschrieben: "The goal of Grails is to create a platform with the essence of frameworks like Rails or Django or CakePHP, but one that embraces the mature environment of Java Enterprise Edition(Java EE) and its associated APIs." Grails soll also die guten Eigenschaften der bereits bestehenden Frameworks und Java EE verbinden um eine neues mächtiges Framework zu schaffen.
 
 \subsubsection{Architektur}
-Wie in der folgenden Abbildung dargestellt, baut Grails auf der Java Virtual Machine (JVM) auf. Durch die verwendete Programmiersprache Groovy verbindet Grails zudem die bekannte Java API und entsprechende zugehörige Javadocs mit einem dynamischen Typsystem, sodass sogar ein Mischen der statischen und dynamischen Typen möglich ist. In der Abbildung ist dies daran zu erkennen, dass sowohl Java als Sprache, als auch das Java Development Kit (JDK) Teil des Grails Technologiestacks sind. Zusätzlich zu den allgemeinen Java Eigenschaften gehören zum Technologiestack aber auch:
+Auch Grails verwendet, wie ADF und einige weiter Web Frameworks, die MVC-Architektur. Sie ist sehr ähnlich aufgebaut zu der im ersten Kapitel beschriebenen MVC-Architektur. Es gibt Model, View und Controller die miteinander agieren, wobei der Controller im Fall von Grails nicht optional ist sondern immer benötigt wird um eine Interaktion zwischen Model und View zu ermöglichen.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{img/Folie1.png}
+\caption {MVC-Architektur von Grails}
+\end{figure}
+In der Abbildung sowie auch im Framework selbst wird das Model durch Domain Klassen dargestellt. Diese Klassen sind persistent und werden von Grails automatisch einer jeweilig zugehörigen physischen Tabelle in einer Datenbank zugeordnet. Diese Zuordnung wird von der im Framework integrierten Technologie Hibernate übernommen. Des weiteren gibt es in Grails, wie auch in ADF die Möglichkeit Services wie zum Beispiel REST Web Services anzubinden. Über die Abbildung hinaus können zudem viele Funktionalitäten zusätzlich über Plugins hinzugefügt und verwendet werden.\\
+
+In der folgenden Abbildung wird der von Grails verwendete Technologiestack dargestellt. Es ist dargestellt, dass Grails auf der Java Virtual Machine (JVM) aufbaut und Grails durch die verwendete Programmiersprache Groovy, zudem die bekannte Java API und die entsprechenden zugehörigen Javadocs mit einem dynamischen Typsystem verbindet. Durch diese Verbindung ist damit sogar ein Mischen von statischen und dynamischen Typen möglich ist.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.80\textwidth]{img/Grails-Stack.png}
+\caption {Technologiestack von Grails}
+\end{figure} 
+In der Abbildung ist dies daran zu erkennen, dass sowohl Java als Sprache, als auch das Java Development Kit (JDK) Teil des Grails Technologiestacks sind. Zusätzlich zu den allgemeinen Java Eigenschaften gehören zum Technologiestack aber auch:
 \begin{itemize}
 \item Hibernate: Als Standard für objektrelationales Mapping (ORM)
 \item Spring: das große und beliebte Open Source Inversion of Control Kontainer und Wrapper Framework für Java
@@ -59,15 +73,3 @@ Wie in der folgenden Abbildung dargestellt, baut Grails auf der Java Virtual Mac
 \item Jetty: ein embeddable Servlet Kontainer
 \item HSQLDB: Ein reines Java relationales Datenbank Management System (RDBMS) 
 \end{itemize}
- 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.80\textwidth]{img/Grails-Stack.png}
-\caption {Technologiestack von Grails}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.80\textwidth]{img/MVC-Grails.png}
-\caption {MVC-Architektur von Grails}
-\end{figure}
-\subsubsection{}
