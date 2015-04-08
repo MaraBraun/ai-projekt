@@ -3,6 +3,7 @@
 Dieses Kapitel soll die wesentlichen Anforderungen an Web Application Frameworks zusammenfassen und eine Begründung enthalten, weshalb diese Anforderungen relavant sind. Es wird benötigt, um in den Folgenden Kapiteln die Vor und Nachteile der beiden Frameworks vergleichbar darstellen zu können.
 \subsubsection*{Lizenz und Lizenzkosten}
 Da es sowohl Open Source als auch lizensierte Frameworks zur Entwicklung von Webanwendungen gibt, können sich die eventuell vorhandenen Lizenzkosten auf die Gesamtkosten des Projektes auswirken. Zudem müssen anfallende Lizenzkosten zum Betreiben der entwickelten Software bei der Auswahl eines Frameworks mit betrachtet werden.
+Ein weiterer zu beachtender Punkt bezüglich der Lizenzen ist die GNU General Public License (GNU GPL), denn sobald Teile des Quellcodes einer Software die unter diese Lizenz fällt in der eigenen Anwendung verwendet werden kann die Notwendigkeit bestehen, dass die eigene Anwendung ebenfalls unter diese Lizenz fallen muss. Daher ist insbesondere bei der Verwendung von GNU GPL Erweiterungen zu prüfen ob die Anwenwendung bei Verwendung ebenfalls unter die GNU GPL fällt.
 \subsubsection*{Lernkurve}
 Da Web Application Frameworks nicht alle gleich aufgebaut sind oder ähnlich umfangreich sind, kann auch die Einarbeitungszeit für das entsprechende Framework unterschiedlich lang ausfallen. Da dies die Entwicklungszeit für die entsprechende Software verlängern oder verkürzen kann, gilt es die Lernkurve bei Auswahl des Frameworks zu beachten.
 \subsubsection*{Community und Support}
@@ -20,13 +21,13 @@ Da Software und damit auch Webanwendungen häufig im Team entwickelt werden, mus
 \subsubsection*{Performanz}
 Die Performanz von Web Application Frameworks und den daraus resultierenden Anwendungen ist ebenfalls ein wesentlicher Punkt bei der Auswahl eines Frameworks, jedoch wird dieser hier nicht genauer betrachtet, da es schwer ist sinnvoll vergleichbare Werte für die Performanz zweier Frameworks zu finden.
 \subsection{Vor- und Nachteile von ADF}
-Was zeichnet ADF aus? Was kann ADF besser als andere Frameworks seiner Art?
-Welche Nachteile bringt ADF, was macht es schlechter als vergleichbare Frameworks?
-hat lizenzkosten
+Dieses Kapitel soll die Vor und Nachteile von ADF anhand des zuvor aufgestellten Anforderungskatalogs erläutern und herhorheben, inwiefern sich ADF von anderen Web Application Frameworks abhebt.\\\\
+Da ADF eine proprietäre kommerzielle Software ist fallen bei Einsatz der, mit diesem Framework entwickelten Software Lizenzkosten an. Jedoch hat die Verwendung eines proprietären Frameworks den Vorteil, das der Quellcode in keinem Fall offen gelegt werden muss. Zudem ist ADF ein sehr umfangreiches und mächtiges Framework, das recht schnell die Realisierung von Funktionen wie beispielsweise Mehrsprachigkeit zulässt. Da ADF nur wenig erweiterbar ist, sind Funktionalitäten, wie Mehrsprachigkeit schon von vornherein vorhanden ("`out of the Box"'). Dieser große Umfang des Frameworks hat jedoch den Nachteil, dass die Lernkurve bei Entwicklern mit weniger Erfahrung im prozeduralen und 4GL-Hintergrund langsamer steigt. Einem Entwickler, der mit ADF bereits vertraut ist, ist das sogenannte "`Rapid Application Development"' möglich da ADF durch seinen baukastenartigen Aufbau und die vielen Wizards deutlich schnelleres Entwickeln ermöglicht. Das schnelle Tempo bei der Entwickling wird zudem durch eine Umfangreiche Dokumentation und eine aktive Community, die viele Beispiele für die unterschiedlichsten Problemszenarien zur verfügung stellt, gefördert.
+Auch die im Anforderungskatalog aufgeführten Punkte Versionierbarkeit und Testbarkeit erfüllt ADF, da es sich zum einen mit den bekannten Versionierungstools GIT und SVN versionieren lässt und damit auch die Arbeit in größeren Teams zulässt, zum anderen aber auch beispielsweise Unit Tests möglich sind um z.B. selbst erstellte Java Klassen und Methoden testen zu können.(Versionierung nicht immer nachvollziehbar wenn wizards verwendet wurden)
 \subsection{Vor- und Nachteile von Grails}
-Was zeichnet Grails aus? Was kann Grails besser als andere Frameworks seiner Art?
-Welche Nachteile bringt Grails, was macht es schlechter als vergleichbare Frameworks?
-ist opensource und hat keine lizenzkosten
+Dieses Kapitel soll die Vor und Nachteile von Grails anhand des zuvor aufgestellten Anforderungskatalogs erläutern und herhorheben, inwiefern sich Grails von anderen Web Application Frameworks abhebt.\\\\
+Grails ist ein Open Source Web Application Framework, das keine Lizenzkosten erfordert. Die Lizenz für Grails ist die Apache License in der Version 2.0. Damit ist das im vorigen Kapitel angesprochene
+ist opensource und hat keine lizenzkosten (Apache License, Version 2.0)
 mit Java Kenntnissen schnell zu lernen
 
 Hibernate
