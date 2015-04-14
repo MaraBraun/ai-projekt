@@ -4,14 +4,14 @@ Dieses Kapitel soll für ein grundlegendes Verständnis der Architektur von ADF 
 Mit der Einführung von SOA (Service Oriented Architecture) in der Softwareentwicklung hat die Entwicklung von traditionellen Webanwendungen, in denen die Anwendung eine vollständige Lösung ist, ein Ende gefunden. Moderne Anwendungen sind heute nicht mehr eine vollständige Lösung, sondern sie sind komponentenbasierte Benutzerschnittstellen, die lokale und remote Services für ihre Business Logik verwenden. (Oracle Fusion Developer Guide Introduction Seite xxi)
 \subsection{MVC Architektur allgemein}
 Dieses Kapitel soll dazu dienen, ein Verständnis für die den beiden Frameworks zu Grunde liegenden Architektur zu schaffen.\\\\
-Die Model View Controller (MVC) Architektur wurde in den 1970er Jahren von Trygve Reenskaug für die Plattform Smalltalk entwickelt und spielt bis heute eine bedeutende Rolle in den meisten UI-Frameworks und dem UI-Design.\citep[]{PEAA2002}
+Die Model View Controller (MVC) Architektur wurde in den 1970er Jahren von Trygve Reenskaug für die Plattform Smalltalk entwickelt und spielt bis heute eine bedeutende Rolle in den meisten UI-Frameworks und dem UI-Design\citep[S. 321ff Kapitel 14]{PEAA2002}.
 Wie der Name schon vermuten lässt, besteht die MVC Architektur aus drei Rollen, dem Model, dem View und dem Controller.
 \begin{itemize}
-\item Das Model ist ein nicht sichtbares Objekt, dass einige Informationen der Domäne, wie z.B. alle Daten und Verhalten enthält. Diese Daten und Informationen müssen nicht denen die in der UI verwendet werden entsprechen.
+\item Das Model ist ein nicht sichtbares Objekt, dass einige Informationen der Domäne, wie z.B. alle Daten und Verhalten enthält. Diese Daten und Informationen müssen nicht denen die in der UI verwendet werden entsprechen\citep[S. 321ff Kapitel 14]{PEAA2002}.
 
-\item Die View dient dazu Informationen aus dem Model anzeigen zu können. Dies kann z.B. in Form einer HTML-Seite geschehen, in der die gewünschten Informationen des Models dann angezeigt werden.
+\item Die View dient dazu Informationen aus dem Model anzeigen zu können. Dies kann z.B. in Form einer HTML-Seite geschehen, in der die gewünschten Informationen des Models dann angezeigt werden\citep[S. 321ff Kapitel 14]{PEAA2002}.
 
-\item Die letzte Rolle ist die des Controllers. Der Controller dient dazu Benutzereingaben anzunehmen, das Model zu manipulieren und das View Objekt zu aktualisieren.
+\item Die letzte Rolle ist die des Controllers. Der Controller dient dazu Benutzereingaben anzunehmen, das Model zu manipulieren und das View Objekt zu aktualisieren\citep[S. 321ff Kapitel 14]{PEAA2002}.
 \end{itemize}
 Die wichtigste Trennung ist die Trennung von Model und View. Der Grundgedanke hierbei ist es, dass ein Entwickler, wenn er eine View (Ansicht) entwickelt, über andere Dinge nachdenkt, als wenn er das Model entwickelt. Beispielsweise denkt er bei der Entwicklung der View mehr über die Mechanismen der UI und bei der Entwicklung des Models mehr über die Geschäftsstrategie nach. Zudem möchte ein User eventuell ein und die selbe Information aus dem Model in einer Anwendung auf unterschiedliche Weise dargestellt haben, was sich durch die Trennung von View und Model vereinfacht, da für jede Ansicht das selbe Model verwendet werden kann und sich nur die View ändert. Ein letzter Aspekt, der für die Trennung von Model und View spricht, ist das nicht sichtbare Objekte meist besser zu testen sind als sichtbare und so durch die MVC-Architektur die Modellogik getrennt von der Benutzeroberfläche (GUI) getestet werden kann.
 \begin{figure}[h]
@@ -19,15 +19,14 @@ Die wichtigste Trennung ist die Trennung von Model und View. Der Grundgedanke hi
 \includegraphics[width=0.80\textwidth]{img/MVC-Allgemein(Fowler).png}
 \caption {MVC-Architektur}
 \end{figure}
-Die Trennung von View und Controller dagegen ist weniger relevant und nicht immer sinnvoll, weshalb in einigen Frameworks heute eine Kombination von View und Controller verwendet wird. Selbst in den meisten Versionen von Smalltalk, für die die MVC-Architektur ursprünglich entwickelt wurde, wurde meist eine Kombination von View und Controller verwendet. Die Trennung von View und Controller ist vorallem dann sinnvoll, wenn es sich um Rich-Client-Systeme handelt oder der Controller von Web-Frontends separiert wird.\\
-Wie auch in der Abbildung zu sehen, ist die Richtung der Abhängigkeiten für die MVC-Architektur entscheidend. Die Abbildung zeigt, dass sowohl View als auch Controller vom Model abhängig sind, jedoch keine Abhängigkeit des Models von View oder Controller besteht. Diese Unabhängigkeit des Models bedeutet, dass das Model auch bei Änderungen an View und Controller unverändert bleibt und damit Änderungen am View deutlich erleichtert.
-(Patterns of Enterprise Application Architecture - Martin Fowler)
+Die Trennung von View und Controller dagegen ist weniger relevant und nicht immer sinnvoll, weshalb in einigen Frameworks heute eine Kombination von View und Controller verwendet wird. Selbst in den meisten Versionen von Smalltalk, für die die MVC-Architektur ursprünglich entwickelt wurde, wurde meist eine Kombination von View und Controller verwendet. Die Trennung von View und Controller ist vorallem dann sinnvoll, wenn es sich um Rich-Client-Systeme handelt oder der Controller von Web-Frontends separiert wird\citep[S. 321ff Kapitel 14]{PEAA2002}.\\
+Wie auch in der Abbildung zu sehen, ist die Richtung der Abhängigkeiten für die MVC-Architektur entscheidend. Die Abbildung zeigt, dass sowohl View als auch Controller vom Model abhängig sind, jedoch keine Abhängigkeit des Models von View oder Controller besteht. Diese Unabhängigkeit des Models bedeutet, dass das Model auch bei Änderungen an View und Controller unverändert bleibt und damit Änderungen am View deutlich erleichtert\citep[S. 321ff Kapitel 14]{PEAA2002}.
 \subsection{ADF}
 Dieses Kapitel soll einen Einblick in die Möglichkeiten des Frameworks ADF bieten und dessen Aufbau und Bedienbarkeit erläutern.
 
 \subsubsection{Grundlegendes}
 
-Eine Lösung zur Entwicklung von modernen Anwendungen als komponentenbasierte Benutzerschnittstelle bietet ORACLE mit dem Application Development Framework (ADF). ADF ist ein Java EE (Java Enterprise Edition) Framework, das Anwendungsentwicklung mit Java, Java EE und SOA vereinfachen soll um ein breites Publikum von Geschäftsbereich- und Technologieexperten anzusprechen, die zusammen arbeiten müssen, um langlebige Enterprise Softwarelösungen entwickeln zu können.(Oracle Fusion Developer Guide Introduction Seite xxiii)
+Eine Lösung zur Entwicklung von modernen Anwendungen als komponentenbasierte Benutzerschnittstelle bietet ORACLE mit dem Application Development Framework (ADF). ADF ist ein Java EE (Java Enterprise Edition) Framework, das Anwendungsentwicklung mit Java, Java EE und SOA vereinfachen soll um ein breites Publikum von Geschäftsbereich- und Technologieexperten anzusprechen, die zusammen arbeiten müssen, um langlebige Enterprise Softwarelösungen entwickeln zu können\citep[S. XXIII Kapitel: Introduction]{OFDG2010}.
 \subsubsection{Architektur}
 Das Application Developement Framework von Oracle basiert, wie auch einige andere Web Application Frameworks heutzutage auf der im vorigen Kapitel beschriebenen MVC-Architektur. 
 Auch ADF hat Model, View und Controller, jedoch werden diese Schichten der Architektur noch durch die Ebenen Business Services und Data Services erweitert.
