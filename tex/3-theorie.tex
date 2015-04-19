@@ -1,0 +1,66 @@
+\section{Theoretische Grundlagen}
+Dieses Kapitel soll für ein grundlegendes Verständnis der Architektur von ADF und Grails und dem Umfang dieser Frameworks sorgen, um im nachfolgenden Vergleich (Kapitel 3 und 4) der beiden Frameworks die Vor- und Nachteile nachvollziehen zu können. Hierbei wird zunächst allgemein die Entstehung der Frameworks und die den beiden Frameworks zugrunde liegende MVC-Architektur (Kapitel 2.1 und 2.2) erläutert und nachfolgend auf die spezifische Architektur und die jeweiligen Eigenschaften der beiden Frameworks eingegangen (Kapitel 2.3 und 2.4).
+
+\subsection{Entstehung}
+Mit der Einführung von SOA (Service Oriented Architecture) in der Softwareentwicklung hat die Entwicklung von traditionellen Webanwendungen, in denen die Anwendung eine vollständige Lösung ist, ein Ende gefunden. Moderne Anwendungen sind heute nicht mehr eine vollständige Lösung, sondern sie sind komponentenbasierte Benutzerschnittstellen, die lokale und remote Services für ihre Business Logik verwenden. \citep[S. XXI]{OFDG2010}
+\subsection{MVC Architektur allgemein}
+Die Model View Controller (MVC) Architektur wurde in den 1970er Jahren von Trygve Reenskaug für die Plattform Smalltalk entwickelt und spielt bis heute eine bedeutende Rolle in den meisten UI-Frameworks und dem UI-Design\citep[S. 330]{PEAA2002}.
+Wie der Name schon vermuten lässt, besteht die MVC Architektur aus drei Rollen, dem Model, dem View und dem Controller.
+\begin{itemize}
+\item Das Model ist ein nicht sichtbares Objekt, dass einige Informationen der Domäne, wie z.B. alle Daten und Verhalten enthält. Diese Daten und Informationen müssen nicht denen die in der UI verwendet werden entsprechen\citep[S. 330]{PEAA2002}.
+
+\item Die View dient dazu Informationen aus dem Model anzeigen zu können. Dies kann z.B. in Form einer HTML-Seite geschehen, in der die gewünschten Informationen des Models dann angezeigt werden\citep[S. 330]{PEAA2002}.
+
+\item Die letzte Rolle ist die des Controllers. Der Controller dient dazu Benutzereingaben anzunehmen, das Model zu manipulieren und das View Objekt zu aktualisieren\citep[S. 330f]{PEAA2002}.
+\end{itemize}
+Die wichtigste Trennung ist die Trennung von Model und View. Der Grundgedanke hierbei ist es, dass ein Entwickler, wenn er eine View (Ansicht) entwickelt, über andere Dinge nachdenkt, als wenn er das Model entwickelt. Beispielsweise denkt er bei der Entwicklung der View mehr über die Mechanismen der UI und bei der Entwicklung des Models mehr über die Geschäftsstrategie nach. Zudem möchte ein User eventuell ein und die selbe Information aus dem Model in einer Anwendung auf unterschiedliche Weise dargestellt haben, was sich durch die Trennung von View und Model vereinfacht, da für jede Ansicht das selbe Model verwendet werden kann und sich nur die View ändert. Ein letzter Aspekt, der für die Trennung von Model und View spricht, ist dass nicht sichtbare Objekte meist besser zu testen sind als sichtbare und so durch die MVC-Architektur die Modellogik getrennt von der Benutzeroberfläche (GUI) getestet werden kann.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.80\textwidth]{img/MVC-Allgemein(Fowler).png}
+\caption {MVC-Architektur}
+\end{figure}
+Die Trennung von View und Controller dagegen ist weniger relevant und nicht immer sinnvoll, weshalb in einigen Frameworks heute eine Kombination von View und Controller verwendet wird. Selbst in den meisten Versionen von Smalltalk, für die die MVC-Architektur ursprünglich entwickelt wurde, wurde meist eine Kombination von View und Controller verwendet. Die Trennung von View und Controller ist vorallem dann sinnvoll, wenn es sich um Rich-Client-Systeme handelt oder der Controller von Web-Frontends separiert wird. \citep[S. 330-332]{PEAA2002}\\
+Wie auch in der Abbildung zu sehen, ist die Richtung der Abhängigkeiten für die MVC-Architektur entscheidend. Die Abbildung zeigt, dass sowohl View als auch Controller vom Model abhängig sind, jedoch keine Abhängigkeit des Models von View oder Controller besteht. Diese Unabhängigkeit des Models bedeutet, dass das Model auch bei Änderungen an View und Controller unverändert bleibt und damit Änderungen am View deutlich erleichtert. \citep[S. 330-332]{PEAA2002}
+\subsection{ADF}
+\subsubsection{Grundlegendes}
+Eine Lösung zur Entwicklung von modernen Anwendungen als komponentenbasierte Benutzerschnittstelle bietet ORACLE mit dem Application Development Framework (ADF). ADF ist ein Java EE (Java Enterprise Edition) Framework, das Anwendungsentwicklung mit Java, Java EE und SOA vereinfachen soll um ein breites Publikum von Geschäftsbereich- und Technologieexperten anzusprechen, die zusammen arbeiten müssen, um langlebige Enterprise Softwarelösungen entwickeln zu können\citep[S. XXIII]{OFDG2010}.
+\subsubsection{Architektur}
+Das Application Developement Framework von Oracle basiert, wie auch einige andere Web Application Frameworks heutzutage auf der im vorigen Kapitel beschriebenen MVC-Architektur. 
+Auch ADF hat Model, View und Controller, jedoch werden diese Schichten der Architektur noch durch die Ebenen Business Services und Data Services erweitert.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{img/MVC-ADF3.png}
+\caption {MVC-Architektur von ADF}
+\end{figure}
+
+Die View Ebene der ADF Architektur (siehe Abbildung) ist wie allgemein von der MVC Architektur vorgesehen die Anzeigeebene der Anwendung und unterteilt sich in die Kategorien Desktop und Browser, da mit ADF sowohl Java Swing Anwendungen (also Desktopanwendungen) als auch Web- oder auch Browser-Anwendungen erstellt werden können \citep[S.22]{AUW2009}. Diese Unterteilung wirkt sich auch auch auf die nächste Ebene der Architektur aus, denn eine Trennung von View und Controller wird für Desktopanwendungen nicht zwingend benötigt (siehe auch Kapitel MVC). Für Webanwendungen ist es jedoch sinnvoll einen Controller zu haben um Frontend und Controller getrennt zu behandeln. Der Controller von ADF Anwendungen hat die Aufgabe, Benutzeraktionen zu interpretieren und zu entscheiden, welche Seiten dem User in welcher Reihenfolge angezeigt werden\citep[S.12]{OAEAD2014}.\\
+Das Model ist hier die Abstraktionsschicht. Es besteht aus dem ADF Binding Layer und den Data Controls. Die Data Controls bilden die Schnittstelle zu den Business Services und können daher verschiedene Geschäftslogikimplementierungen zur Verfügung stellen. Der Binding Layer verwendet wiederum die jeweilige vom Data Control zur Verfügung gestellte Geschäftslogik, um mit dem Controller (wenn er vorhanden ist) interagieren zu können und entsprechende Daten im View anzuzeigen und Funktionen in der Geschäftslogik aufrufen zu können. \citep[S.6]{ARIA2015}\\
+Die beiden zusätzlichen Ebenen in der ADF-MVC-Architektur sind die Business Services und die Data Services. Mit Hilfe dieser Ebenen können in der Anwendung z.B. Web Services angebunden werden und es können Verbindungen zu relationalen Datenbanken oder anderen Data Services hergestellt werden \citep[S.13]{OAEAD2014}. Dies zeigt recht eindeutig, dass es sich bei ADF um ein sehr umfangreiches nicht modulares Framework handelt, da der Stack der möglichen Verwendbaren Technologien von vornherein feststeht und sich auch nicht mehr durch z.B. Erweiterungen verändern lässt.
+
+\subsection{Grails}
+\subsubsection{Grundlegendes}
+Auch Grails ist ein Framework, mit dem Web-Anwendungen erstellt werden können. Grails wurde 2005 unter anderem im Zuge der Beliebtheit von auf dynamischen Sprachen basierenden Frameworks entwickelt, die angeführt wurde von Ruby on Rails. Grails basiert auf der 2003 entstandenen Programmiersprache Groovy, die wiederum auf Java basiert\citep[S.XXV]{DGG2002}\citep[S.3]{GGR2009}. Das wesentliche Ziel des Frameworks Grails wurde wie folgt beschrieben: \begin{quote}\small "`The goal of Grails is to create a platform with the essence of frameworks like Rails or Django or CakePHP, but one that embraces the mature environment of Java Enterprise Edition(Java EE) and its associated APIs."'\citep[S.4]{DGG2002}\end{quote} Grails soll also die guten Eigenschaften der bereits bestehenden Frameworks und Java EE verbinden um eine neues mächtiges Framework zu schaffen.
+
+\subsubsection{Architektur}
+Auch Grails verwendet, wie ADF und einige weitere Web Frameworks, die MVC-Architektur \citep[S.208]{GGR2009}. Allerdings hält sich Grails strenger an die im ersten Kapitel beschriebene MVC-Architektur. Es gibt Model, View und Controller die miteinander agieren, wobei der Controller im Fall von Grails nicht optional ist, sondern immer benötigt wird um eine Interaktion zwischen Model und View zu ermöglichen\citep[S.8]{DGG2002}.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{img/Folie1.png}
+\caption {MVC-Architektur von Grails \citep[S.220]{GGR2009}}
+\end{figure}
+In der Abbildung sowie auch im Framework selbst wird das Model durch Domain Klassen dargestellt. Diese Klassen sind persistent und werden von Grails automatisch einer jeweilig zugehörigen physischen Tabelle in einer Datenbank zugeordnet \citep[S.17]{DGG2002}. Diese Zuordnung kann zum Beispiel von der im Framework integrierbaren Technologie Hibernate übernommen \citep[S.18]{DGG2002}. Grails lässt jedoch auch andere ORM (Object Relational Mapping) Systeme zu \citep{GPO2015}. Des weiteren gibt es in Grails, wie auch in ADF die Möglichkeit Services wie zum Beispiel RESTful Web Services anzubinden. Über die Abbildung hinaus können zudem viele Funktionalitäten zusätzlich über Plugins hinzugefügt und verwendet werden \citep[S.3]{DGG2002}.\\
+
+In der folgenden Abbildung wird der von Grails standardmäßig verwendete Technologiestack dargestellt. Es ist dargestellt, dass Grails auf der Java Virtual Machine (JVM) aufbaut und Grails durch die verwendete Programmiersprache Groovy, zudem die bekannte Java API und die entsprechenden zugehörigen Javadocs mit einem dynamischen Typsystem verbindet. Durch diese Verbindung ist damit sogar ein Mischen von statischen und dynamischen Typen möglich. \citep[S.2-4]{DGG2002} 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.80\textwidth]{img/Grails-Stack.png}
+\caption {Technologiestack von Grails \citep[S.3]{DGG2002}}
+\end{figure} 
+In der Abbildung ist dies daran zu erkennen, dass sowohl Java als Sprache, als auch das Java Development Kit (JDK) Teil des Grails Technologiestacks sind. Allerdings sind die Komponenten Hibernate und Sitemesh und sogar die Programmiersprache Groovy optional, da statt Groovy auch Java verwendet werden kann und auch für Hibernate oder Sitemesh andere Komponenten verwendet werden können, da Grails ein sehr modulares Framework ist \citep{GP2015}. Standardmäßig beinhaltet der Grails Technologiestack \citep[S.2]{DGG2002}:
+\begin{itemize}
+\item Hibernate: Als Standard für objektrelationales Mapping (ORM)
+\item Spring: das große und beliebte Open Source Inversion of Control Kontainer und Wrapper Framework für Java
+\item SiteMesh: ein robustes und stabiles Layout Rendering Framework
+\item Jetty: ein embeddable Servlet Kontainer
+\item HSQLDB: Ein reines Java relationales Datenbank Management System (RDBMS) 
+\end{itemize}
