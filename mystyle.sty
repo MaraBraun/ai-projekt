@@ -13,12 +13,14 @@
 \usepackage{setspace}
 
 \usepackage{float}
-\usepackage[round]{natbib}
+%\usepackage[round]{natbib}
+\usepackage[backend=bibtex8]{biblatex}
 \usepackage{bigstrut}
 \usepackage{hyperref}
 \usepackage{booktabs}
-\usepackage{cite}
-
+%\usepackage{cite}
+%\usepackage[babel,german=guillements]{csquotes}
+\bibliography{literatur}
 %%%%%%%%%%%%%%%%%%%%%%%
 %%Glossar Paket laden%
 %\usepackage[xindy,toc]{glossaries} % nomain, if you define glossaries in a file, and you use \include{INP-00-glossary}
@@ -30,6 +32,6 @@
 \onehalfspacing%Anderthalb Zeilenabstand
 
 \usepackage[toc,page]{appendix}%Anhang
-\bibliographystyle{plainnat}
+%\bibliographystyle{plainnat}
 \addto\captionsngerman{\let\appendixtocname\appendixname%
 \let\appendixpagename\appendixname}
